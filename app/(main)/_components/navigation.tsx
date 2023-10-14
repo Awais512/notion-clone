@@ -67,6 +67,18 @@ export const Navigation = () => {
     }
   };
 
+  const collapse = () => {
+    if (sidebarRef.current && navbarRef.current) {
+      setIsCollapsed(true);
+      setIsResetting(true);
+
+      sidebarRef.current.style.width = "0";
+      navbarRef.current.style.setProperty("width", "100%");
+      navbarRef.current.style.setProperty("left", "0");
+      setTimeout(() => setIsResetting(false), 300);
+    }
+  };
+
   return (
     <>
       <aside
@@ -78,6 +90,7 @@ export const Navigation = () => {
         )}
       >
         <div
+          onClick={collapse}
           role="button"
           className={cn(
             "h-6 w-6 text-muted-foreground rounded-sm hover:bg-neutral-300 dark:hover:bg-neutral-600 absolute top-3 right-2 opacity-0 group-hover/sidebar:opacity-100 transition",
@@ -108,7 +121,11 @@ export const Navigation = () => {
       >
         <nav className="bg-transparent px-3 py-2 w-full">
           {isCollapsed && (
-            <MenuIcon className="h-6 w-6 text-muted-foreground" role="button" />
+            <MenuIcon
+              onClick={resetWidth}
+              className="h-6 w-6 text-muted-foreground"
+              role="button"
+            />
           )}
         </nav>
       </div>
