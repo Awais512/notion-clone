@@ -11,7 +11,7 @@ interface EditorProps {
   editable?: boolean;
 }
 
-export const Editor = ({ onChange, initialContent, editable }: EditorProps) => {
+const Editor = ({ onChange, initialContent, editable }: EditorProps) => {
   const { resolvedTheme } = useTheme();
   const { edgestore } = useEdgeStore();
   const handleUpload = async (file: File) => {
@@ -39,3 +39,5 @@ export const Editor = ({ onChange, initialContent, editable }: EditorProps) => {
     </div>
   );
 };
+
+export default Editor;
